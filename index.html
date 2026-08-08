@@ -3,12 +3,200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My First Laboratory Page</title>
+    <title>My Portfolio - Lab Exercise 2</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1 style="color: #2c3e50; text-align: center;">Hello, World!!!</h1>
-    <p style="font-size: 18px;"> My name is <strong>Eldrean Agramon</strong>.</p>
-    <p style="font-size: 18px;"> My StudentID is <strong>2411600226</strong>.</p>
-    <p> This is my first webpage served locally using XAMPP! </p>
+
+    <!-- HEADER SECTION -->
+    <header>
+        <div class="header-content">
+            <h1>Eldrean G. Agramon</h1>
+            <p class="tagline">Aspiring Web Developer &amp; Computer Science Student</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <!-- HOME SECTION -->
+        <section id="home" class="hero-section">
+            <div class="hero-content">
+                <h2>Welcome to My Portfolio</h2>
+                <p>Building the future, one line of code at a time.</p>
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2>About Me</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>Hello! I'm Eldrean G. Agramon, a Third-year Bachelor of Science in Information Technology student at Ramon Magsaysay Memorial Colleges. I'm passionate about creating digital solutions that make a difference in people's lives.</p>
+                       <strong>Year Level:</strong> 3rd Year<br>
+                        <strong>Interests:</strong> Web Development, UI/UX Design, Mobile App Development</p>
+                    </div>
+                    <div class="about-image">
+                        <img src="7254831f-9ad1-4b50-abc8-71efc52b610c.jpg" alt="Profile Photo" class="profile-img">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS SECTION -->
+        <section id="skills" class="skills-section">
+            <div class="container">
+                <h2>My Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3>HTML5 &amp; CSS3</h3>
+                        <p>Building responsive and semantic web pages with modern styling techniques.</p>
+                        <div class="skill-level">
+                            <div class="skill-bar" style="width: 50%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <h3>JavaScript</h3>
+                        <p>Creating interactive web applications with vanilla JavaScript and frameworks.</p>
+                        <div class="skill-level">
+                            <div class="skill-bar" style="width: 20%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Python</h3>
+                        <p>Backend development, data analysis, and automation with Python.</p>
+                        <div class="skill-level">
+                            <div class="skill-bar" style="width: 30%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <h3>PHP &amp; MySQL</h3>
+                        <p>Building dynamic websites with database integration.</p>
+                        <div class="skill-level">
+                            <div class="skill-bar" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Version Control (Git)</h3>
+                        <p>Collaborating on projects using Git and GitHub.</p>
+                        <div class="skill-level">
+                            <div class="skill-bar" style="width: 50%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section id="projects" class="projects-section">
+            <div class="container">
+                <h2>My Projects</h2>
+                <div class="projects-grid">
+                    <article class="project-card">
+                        <div class="project-image">
+                            <img src="images3.jpg" alt="Project 1">
+                        </div>
+                        <div class="project-info">
+                            <h3>Portfolio Website</h3>
+                            <p>A personal portfolio website built with HTML, CSS, and JavaScript to showcase my work and skills.</p>
+                            <a href="#" class="btn btn-secondary">View Project</a>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-image">
+                            <img src="images2.jpg" alt="Project 2">
+                        </div>
+                        <div class="project-info">
+                            <h3>E-commerce Platform</h3>
+                            <p>A fully functional e-commerce website with product listings, shopping cart, and payment integration.</p>
+                            <a href="#" class="btn btn-secondary">View Project</a>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-image">
+                            <img src="images1.jpg" alt="Project 3">
+                        </div>
+                        <div class="project-info">
+                            <h3>Weather App</h3>
+                            <p>A weather application that displays real-time weather data using a public API.</p>
+                            <a href="#" class="btn btn-secondary">View Project</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <h2>Contact Me</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <p><strong>Email:</strong> eldreanagramon@gmail.com</p>
+                        <p><strong>Phone:</strong> +639949379196</p>
+                        <p><strong>Location:</strong> General Santon City, Philippines</p>
+                        <div class="social-links">
+                            <a href="#" class="social-link">GitHub</a>
+                            <a href="#" class="social-link">LinkedIn</a>
+                            <a href="#" class="social-link">Twitter</a>
+                        </div>
+                    </div>
+                    <form class="contact-form">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ASIDE (SIDEBAR) -->
+    <aside class="sidebar">
+        <div class="aside-content">
+            <h3>Quick Facts</h3>
+            <ul>
+                <li><strong>Favorite Programming Language:</strong> Python</li>
+                <li><strong>Current Project:</strong> Personal Portfolio</li>
+                <li><strong>Learning:</strong> React.js</li>
+                <li><strong>Hobby:</strong> Photography</li>
+            </ul>
+            <div class="quote-box">
+                <blockquote>
+                    "The best way to predict the future is to create it."
+                </blockquote>
+                <cite>- Peter Drucker</cite>
+            </div>
+            <div class="fun-fact">
+                <h4>Fun Fact</h4>
+                <p>I built my first computer at age 12 and haven't stopped tinkering since!</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Eldrean G. Agramon. All rights reserved.</p>
+            <p>Contact: eldreanagramon@gmail.com</p>
+            <p>Last updated: August 2026</p>
+        </div>
+    </footer>
+
 </body>
 </html>
