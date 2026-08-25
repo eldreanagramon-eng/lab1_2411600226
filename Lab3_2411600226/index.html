@@ -1,1 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gymes - Login</title>
 
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============================================
+           GYMES - LOGIN THEME
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0A0A1A;
+            color: #FFFFFF;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(ellipse at center, #1A1A3A 0%, #0A0A1A 100%);
+            padding: 20px;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(108, 60, 225, 0.08), transparent 60%),
+                        radial-gradient(ellipse at 70% 50%, rgba(0, 212, 170, 0.06), transparent 60%);
+            pointer-events: none;
+        }
+
+        .login-container {
+            max-width: 420px;
+            width: 100%;
+            background: #141429;
+            border: 1px solid #2A2A4A;
+            border-radius: 20px;
+            padding: 48px 40px;
+            position: relative;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .login-logo {
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, #6C3CE1, #00D4AA);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+        }
+
+        .login-logo i {
+            font-size: 32px;
+            color: white;
+        }
+
+        .login-header h1 {
+            font-weight: 800;
+            font-size: 28px;
+            margin: 0;
+        }
+
+        .login-header h1 span {
+            background: linear-gradient(135deg, #8B6FF0, #00D4AA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .login-header p {
+            color: #8888AA;
+            margin: 4px 0 0 0;
+            font-size: 14px;
+        }
+
+        .alert-custom {
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid rgba(255, 107, 107, 0.2);
+            color: #FF6B6B;
+            padding: 12px 16px;
+            border-radius: 12px;
+            display: none;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .alert-custom i {
+            margin-right: 10px;
+        }
+
+        .alert-custom.d-none {
+            display: none;
+        }
+
+        .alert-custom:not(.d-none) {
+            display: block;
+        }
+
+        .input-group-custom {
+            margin-bottom: 20px;
+        }
+
+        .input-group-custom label {
+            display: block;
+            font-weight: 600;
+            font-size: 13px;
+            color: #8888AA;
+            margin-bottom: 6px;
+        }
+
+        .input-field {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #2A2A4A;
+            border-radius: 12px;
+            padding: 0 16px;
+            transition: all 0.3s ease;
+        }
+
+        .input-field:focus-within {
+            border-color: #6C3CE1;
+            box-shadow: 0 0 0 4px rgba(108, 60, 225, 0.15);
+        }
+
+        .input-field i {
+            color: #8888AA;
+            font-size: 16px;
+        }
+
+        .input-field input {
+            background: transparent;
+            border: none;
+            padding: 14px 12px;
+            color: #FFFFFF;
+            font-size: 15px;
+            width: 100%;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .input-field input::placeholder {
+            color: #8888AA;
+            font-weight: 300;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #6C3CE1, #00D4AA);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(108, 60, 225, 0.3);
+        }
+
+        .btn-login i {
+            margin-right: 10px;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #8888AA;
+            font-size: 13px;
+        }
+
+        .login-footer .demo {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 4px 14px;
+            border-radius: 50px;
+            font-weight: 500;
+            color: #00D4AA;
+            margin-top: 4px;
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 32px 24px;
+            }
+
+            .login-header h1 {
+                font-size: 24px;
+            }
+
+            .login-logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .login-logo i {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+
+        <div class="login-header">
+            <div class="login-logo">
+                <i class="fas fa-dumbbell"></i>
+            </div>
+            <h1><span>Gymes.</span></h1>
+            <p>Your fitness journey starts here</p>
+        </div>
+
+        <div id="loginAlert" class="alert-custom d-none">
+            <i class="fas fa-exclamation-circle"></i>
+            Invalid username or password. Please try again.
+        </div>
+
+        <div class="input-group-custom">
+            <label>Username</label>
+            <div class="input-field">
+                <i class="fas fa-user"></i>
+                <input type="text" id="username" placeholder="Enter your username">
+            </div>
+        </div>
+
+        <div class="input-group-custom">
+            <label>Password</label>
+            <div class="input-field">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+        </div>
+
+        <button class="btn-login" id="loginBtn">
+            <i class="fas fa-sign-in-alt"></i> Sign In
+        </button>
+
+        <div class="login-footer">
+            <small>Demo credentials</small>
+            <div class="demo">admin / password123</div>
+        </div>
+
+    </div>
+
+    <script>
+        console.log('Gymes Login loaded!');
+
+        // ============================================
+        // 🔥 FIX: CLEAR SESSION ON LOGIN PAGE LOAD
+        // ============================================
+        localStorage.removeItem('loggedInUser');
+        localStorage.removeItem('userName');
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // ===== CHECK IF STILL LOGGED IN (should be cleared) =====
+            if (localStorage.getItem('loggedInUser')) {
+                localStorage.removeItem('loggedInUser');
+                localStorage.removeItem('userName');
+            }
+
+            const loginBtn = document.getElementById('loginBtn');
+
+            loginBtn.addEventListener('click', function() {
+                const username = document.getElementById('username').value.trim();
+                const password = document.getElementById('password').value.trim();
+
+                console.log('Login attempt:', username);
+
+                if (username === 'admin' && password === 'password123') {
+                    console.log('Login successful!');
+                    localStorage.setItem('loggedInUser', username);
+                    localStorage.setItem('userName', 'Gymes User');
+                    window.location.href = 'dashboard.html';
+                } else {
+                    console.log('Login failed!');
+                    const alert = document.getElementById('loginAlert');
+                    alert.classList.remove('d-none');
+                    setTimeout(function() {
+                        alert.classList.add('d-none');
+                    }, 3000);
+                    document.getElementById('password').value = '';
+                }
+            });
+
+            // Enter key support
+            document.getElementById('password').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') loginBtn.click();
+            });
+
+            document.getElementById('username').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') loginBtn.click();
+            });
+
+        });
+    </script>
+
+</body>
+</html>
