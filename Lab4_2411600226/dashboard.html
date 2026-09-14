@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitTrack Pro - Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-dumbbell me-2"></i> FitTrack Pro
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <span class="nav-link user-badge" id="userDisplay">
+                            <i class="fas fa-user-circle"></i>
+                            <span id="displayName">Manager</span>
+                        </span>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn-logout" id="logoutBtn">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <div class="container-fluid mt-4">
+        <div class="row">
+
+            <!-- ===== SIDEBAR ===== -->
+            <aside class="col-md-3 col-lg-2 sidebar">
+                <div class="sidebar-menu">
+                    <a href="#" class="sidebar-item active">
+                        <i class="fas fa-tachometer-alt"></i> Dashboard
+                    </a>
+                    <a href="#" class="sidebar-item">
+                        <i class="fas fa-boxes"></i> Inventory
+                    </a>
+                    <a href="#" class="sidebar-item">
+                        <i class="fas fa-chart-line"></i> Analytics
+                    </a>
+                    <a href="#" class="sidebar-item">
+                        <i class="fas fa-tags"></i> Categories
+                    </a>
+                    <a href="#" class="sidebar-item">
+                        <i class="fas fa-bell"></i> Alerts
+                    </a>
+                </div>
+            </aside>
+
+            <!-- ===== MAIN CONTENT AREA ===== -->
+            <main class="col-md-9 col-lg-10">
+
+                <!-- Welcome Section -->
+                <div class="welcome-card">
+                    <div>
+                        <h1 id="greetingMessage">Good Morning! 👋</h1>
+                        <p class="text-muted">Here's your inventory overview.</p>
+                    </div>
+                    <div class="welcome-date" id="currentDate"></div>
+                </div>
+
+                <!-- ===== STATISTICS CARDS ===== -->
+                <div class="row g-4 mb-4" id="statsContainer">
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="stat-card card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="stat-label">Total Products</h6>
+                                        <h3 class="stat-value" id="totalProducts">0</h3>
+                                    </div>
+                                    <div class="stat-icon bg-primary">
+                                        <i class="fas fa-boxes"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="stat-card card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="stat-label">Total Value</h6>
+                                        <h3 class="stat-value" id="totalValue">₱0</h3>
+                                    </div>
+                                    <div class="stat-icon bg-secondary">
+                                        <i class="fas fa-peso-sign"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="stat-card card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="stat-label">Low Stock Items</h6>
+                                        <h3 class="stat-value" id="lowStockCount">0</h3>
+                                    </div>
+                                    <div class="stat-icon bg-warning">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="stat-card card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="stat-label">Categories</h6>
+                                        <h3 class="stat-value" id="categoryCount">0</h3>
+                                    </div>
+                                    <div class="stat-icon bg-accent">
+                                        <i class="fas fa-tags"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== CHARTS SECTION ===== -->
+                <div class="row g-4 mb-4">
+                    <div class="col-lg-6">
+                        <div class="chart-card card">
+                            <div class="card-header">
+                                <h5><i class="fas fa-chart-bar me-2"></i> Inventory Value by Category</h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="categoryChart" style="width:100%; height:250px;"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="chart-card card">
+                            <div class="card-header">
+                                <h5><i class="fas fa-chart-pie me-2"></i> Stock Status</h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="stockStatusChart" style="width:100%; height:250px;"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== LOW STOCK ALERTS ===== -->
+                <div id="lowStockAlert" class="alert alert-warning d-none" role="alert">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    <span id="lowStockMessage">Some items are running low on stock!</span>
+                </div>
+
+                <!-- ===== FILTERS AND CONTROLS ===== -->
+                <div class="filter-section card mb-4">
+                    <div class="card-body">
+                        <div class="row g-3 align-items-end">
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold">Category</label>
+                                <select class="form-select" id="categoryFilter">
+                                    <option value="all">All Categories</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold">Stock Status</label>
+                                <select class="form-select" id="stockFilter">
+                                    <option value="all">All Status</option>
+                                    <option value="in-stock">In Stock</option>
+                                    <option value="low-stock">Low Stock</option>
+                                    <option value="out-of-stock">Out of Stock</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold">Price Range</label>
+                                <div class="d-flex gap-2">
+                                    <input type="number" class="form-control" id="priceMin" placeholder="Min">
+                                    <input type="number" class="form-control" id="priceMax" placeholder="Max">
+                                </div>
+                            </div>
+                            <div class="col-md-3 text-end">
+                                <button class="btn btn-primary me-2" id="applyFiltersBtn">
+                                    <i class="fas fa-filter"></i> Apply Filters
+                                </button>
+                                <button class="btn btn-outline-secondary" id="resetFiltersBtn">
+                                    <i class="fas fa-undo"></i> Reset
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== SEARCH AND EXPORT ===== -->
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" class="form-control" id="searchInput" placeholder="Search products by name or SKU...">
+                    </div>
+                    <button class="btn btn-success" id="exportBtn">
+                        <i class="fas fa-file-csv"></i> Export CSV
+                    </button>
+                </div>
+
+                <!-- ===== INVENTORY TABLE ===== -->
+                <div class="table-card">
+                    <div class="table-header">
+                        <h5><i class="fas fa-list me-2"></i> Inventory List</h5>
+                        <span class="badge" id="productCount">0 items</span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>SKU</th>
+                                    <th>Product Name</th>
+                                    <th>Category</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th>Total Value</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="inventoryBody">
+                                <!-- Populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Data Manager -->
+    <script src="js/dataManager.js"></script>
+
+    <!-- Chart Manager -->
+    <script src="js/chartManager.js"></script>
+
+    <!-- Filter Manager -->
+    <script src="js/filterManager.js"></script>
+
+    <!-- Dashboard Main -->
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
